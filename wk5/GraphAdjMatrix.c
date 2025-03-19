@@ -7,6 +7,16 @@ struct graph {
 };
 
 Graph GraphNew(int nV) {
-    // TODO
-    return NULL;
+    Graph g = malloc(sizeof(struct graph));
+    g->nV = nV;
+    g->nE = 0;
+
+    g->adjMatrix = malloc(nV * sizeof(bool *));
+    for (int i = 0; i < nV; i++) {
+        g->adjMatrix[i] = calloc(nV, sizeof(bool));
+    }
+
+    // g->adjMatrix[1][2]
+
+    return g;
 }

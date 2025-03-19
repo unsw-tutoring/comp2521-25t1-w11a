@@ -20,7 +20,20 @@ bool hasTwoSum(int *arr, int n, int sum) {
 }
 
 // use a binary search tree
+// O(n log n)
 bool hasTwoSum(int *arr, int n, int sum) {
-    // TODO
+    // set of numbers we have already seen
+    BSTree bst = BSTNew();  // O(1)
+
+    for (int i = 0; i < n; i++) {  // O(n) times
+        int target = sum - arr[i];
+        if (BSTSearch(bst, target)) {  // log(n)
+            BSTFree(bst);              // O(n)
+            return true;
+        }
+
+        BSTInsert(bst, arr[i]);  // log(n)
+    }
+    BSTFree(bst);  // O(n)
     return false;
 }
